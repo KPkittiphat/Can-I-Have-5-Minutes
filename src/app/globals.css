@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+/* 1. ตั้งค่า Theme สำหรับ Tailwind v4 */
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "DM Sans", sans-serif;
+  --font-mono: "DM Mono", monospace;
+
+  --color-bg: #0a0a0a;
+  --color-surface: #111111;
+  --color-gold: #c8a96e;
+  --color-gold-dim: #8a6f3f;
+  --color-ink-muted: #888888;
+  --color-ink-faint: #444444;
+  --color-border: #2a2a2a;
+
+  --animate-fade-in: fadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 2. Keyframes สำหรับการ Fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 3. Base Styles และการซ่อน Scrollbar */
+@layer base {
+  html, body {
+    @apply bg-bg text-[#e8e8e8] font-sans antialiased selection:bg-gold selection:text-black;
+    
+    /* ซ่อน Scrollbar สำหรับ Chrome, Safari และ Edge */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    
+    /* ซ่อน Scrollbar สำหรับ Firefox และ IE/Edge รุ่นเก่า */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    
+    /* ป้องกันการเลื่อนที่สั่นไหว */
+    overflow-x: hidden;
+  }
+}
+
+/* 4. Utility Classes */
+.delay-1 { animation-delay: 2s; }
+.delay-2 { animation-delay: 4s; }
+.delay-3 { animation-delay: 5.5s; }
+.fill-mode-both { animation-fill-mode: both; }
+
+/* Custom Grid สำหรับ Simulation (15 คอลัมน์) */
+.grid-cols-15 { 
+  display: grid;
+  grid-template-columns: repeat(15, minmax(0, 1fr)); 
+}
+
+/* ซ่อนหัวลูกศรใน input type="number" (เพื่อความสวยงาม) */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
