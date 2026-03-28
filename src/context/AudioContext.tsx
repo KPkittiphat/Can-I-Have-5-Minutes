@@ -39,7 +39,7 @@ export const AudioProvider = ({ children }: { children: React.ReactNode }) => {
         setIsPlaying(true);
         let vol = 0;
         const fadeIn = setInterval(() => {
-          if (vol < 0.3) {
+          if (vol < 0.7) {
             vol += 0.01;
             if (audioRef.current) audioRef.current.volume = vol;
           } else {
